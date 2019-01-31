@@ -1,0 +1,19 @@
+{
+  "name": "saber-algorithm",
+  "version": "0.0.1",
+  "description": "algorithm",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saber2pr/saber-algorithm.git"
+  },
+  "author": "saber2pr",
+  "license": "ISC",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "node ./lib/test/test.js",
+    "start": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.1"
+  }
+}
