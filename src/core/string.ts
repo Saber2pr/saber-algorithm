@@ -9,7 +9,7 @@ export const slashCount = (str: string) => str.split('/').length - 1
 export const urls = (url: string) => {
   const params = url.split('/')
   const reg = /\.|\//
-  while (url.charAt(0).match(reg)) {
+  while (reg.test(url.charAt(0))) {
     params.shift()
     url = params.join('/')
   }
