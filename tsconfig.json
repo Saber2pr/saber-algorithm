@@ -6,6 +6,7 @@
     "outDir": "./lib",
     "esModuleInterop": true,
     "downlevelIteration": true,
+    "noImplicitAny": true,
     "lib": [
       "dom",
       "es2015"
