@@ -15,3 +15,25 @@ export const urls = (url: string) => {
   }
   return params
 }
+
+export const findKeys = (content: string, keys: string[]) => {
+  const record: {
+    type: string
+    index: number
+  }[] = []
+  const depwalk = (str: string, keys: string[], index = 0) => {
+    if (index === keys.length) {
+      return
+    }
+    const key = keys[index]
+    let start = 0
+    let pos = str.indexOf(key, start)
+    while (pos !== -1) {
+      record.push({ type: key, index: pos })
+      pos = str.indexOf(key, pos + key.length)
+    }
+    depwalk(str, keys, index + 1)
+  }
+  depwalk(content, keys)
+  return record.sort((a, b) => a.index - b.index)
+}

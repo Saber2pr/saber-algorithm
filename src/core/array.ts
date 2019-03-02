@@ -9,3 +9,12 @@ export const dedup = <T extends Object>(array: T[], key: keyof T): T[] =>
     (pre, cur) => (pre.find(v => v[key] === cur[key]) ? pre : pre.concat(cur)),
     []
   )
+
+export function join<T>(array: T[], value: T): T[] {
+  const result: T[] = []
+  for (let i = 0; i < array.length; i++) {
+    result.push(array[i], value)
+  }
+  result.pop()
+  return result
+}

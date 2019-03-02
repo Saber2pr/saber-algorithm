@@ -6,4 +6,4 @@ test_string_ts()
 import { test_iterator_ts } from './iterator'
 // test_iterator_ts()
 import { test_array } from './array'
-test_array()
+// test_array()
