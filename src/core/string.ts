@@ -31,9 +31,22 @@ export const findKeys = (content: string, keys: string[]) => {
     while (pos !== -1) {
       record.push({ type: key, index: pos })
       pos = str.indexOf(key, pos + key.length)
-    }
-    depwalk(str, keys, index + 1)
+      }
+      depwalk(str, keys, index + 1)
   }
   depwalk(content, keys)
   return record.sort((a, b) => a.index - b.index)
+}
+
+export const repeatedSubstringPattern = (s: string): boolean => {
+  if (s.length === 1) {
+    return false
+  } else if (s.length === 2) {
+    return s.charAt(0) === s.charAt(1)
+  }
+  if (s.length % 2 === 0) {
+    return s.split(Array.from(new Set(s.split(''))).join('')).join('') === ''
+  } else {
+    return s.split(s.charAt(0)).join('') === ''
+  }
 }

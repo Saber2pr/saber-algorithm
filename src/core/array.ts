@@ -45,3 +45,32 @@ export const merge = (
     ...[...nums1.slice(0, m), ...nums2.slice(0, n)].sort((a, b) => a - b)
   )
 }
+
+export const sum = (args: number[]) => {
+  return (f => f(f))(sum => args.length && args.pop() + sum(sum))
+}
+
+export const sortB = (args: number[]) => {
+  for (let i = 0; i < args.length; i++) {
+    // 从当前元素往后冒泡比较，故称冒泡排序
+    for (let j = i + 1; j < args.length; j++) {
+      if (args[i] > args[j]) {
+        const temp = args[i]
+        args[i] = args[j]
+        args[j] = temp
+      }
+    }
+  }
+  return args
+}
+
+export function sortQuick(arr: number[]): number[] {
+  if (arr.length <= 1) return arr
+  const index = arr.length % 2 ? (arr.length - 1) / 2 : arr.length / 2
+  const stand = arr[index]
+  arr.splice(index, 1)
+  const left = []
+  const right = []
+  arr.forEach(v => (v < stand ? left.push(v) : right.push(v)))
+  return sortQuick(left).concat(stand, sortQuick(right))
+}
