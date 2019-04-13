@@ -74,3 +74,17 @@ export function sortQuick(arr: number[]): number[] {
   arr.forEach(v => (v < stand ? left.push(v) : right.push(v)))
   return sortQuick(left).concat(stand, sortQuick(right))
 }
+
+export function sortSelect(arr: number[]) {
+  const len = arr.length
+  for (let i = 0; i < len; i++) {
+    for (let j = i + 1; j < len; j++) {
+      if (arr[j] < arr[i]) {
+        const temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+      }
+    }
+  }
+  return arr
+}
