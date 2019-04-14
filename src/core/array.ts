@@ -50,6 +50,7 @@ export const sum = (args: number[]) => {
   return (f => f(f))(sum => args.length && args.pop() + sum(sum))
 }
 
+// 冒泡排序 O(n2)
 export const sortB = (args: number[]) => {
   for (let i = 0; i < args.length; i++) {
     // 从当前元素往后冒泡比较，故称冒泡排序
@@ -63,7 +64,7 @@ export const sortB = (args: number[]) => {
   }
   return args
 }
-
+// 
 export function sortQuick(arr: number[]): number[] {
   if (arr.length <= 1) return arr
   const index = arr.length % 2 ? (arr.length - 1) / 2 : arr.length / 2
@@ -78,12 +79,16 @@ export function sortQuick(arr: number[]): number[] {
 export function sortSelect(arr: number[]) {
   const len = arr.length
   for (let i = 0; i < len; i++) {
+    let index = i
     for (let j = i + 1; j < len; j++) {
       if (arr[j] < arr[i]) {
-        const temp = arr[i]
-        arr[i] = arr[j]
-        arr[j] = temp
+        index = j
       }
+    }
+    if(index !== i){
+      const temp = arr[i]
+      arr[i] = arr[index]
+      arr[index] = temp
     }
   }
   return arr
