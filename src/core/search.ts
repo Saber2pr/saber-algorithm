@@ -20,33 +20,37 @@ export interface Node {
   children?: this[]
 }
 
-export const BFS = <T extends Node>(
+export const DFSCallback = <T extends Node>(
   node: T,
   callback: (currentNode: T) => void
 ) => {
   callback(node)
-  node.children && node.children.forEach(n => BFS(n, callback))
+  node.children && node.children.forEach(n => DFSCallback(n, callback))
 }
 
-export const DFS = <T extends Node>(
-  node: T,
+export const DFSResult = <T extends Node>(node: T, result: T[] = []) => {
+  if (node) {
+    result.push(node)
+    node.children.forEach(n => DFSResult(n, result))
+  }
+  return result
+}
+
+// 先从stack弹出一个节点，然后压入所有孩子节点
+// 循环这个过程直到stack为空
+export const DFSQuick = <T extends Node>(
+  root: T,
   callback: (currentNode: T) => void,
-  visited: T[] = []
+  stack = [root]
 ) => {
-  if (!visited.includes(node)) {
+  while (stack.length !== 0) {
+    const node = stack.pop()
+    node.children && node.children.forEach(n => stack.push(n))
     callback(node)
-    visited.push(node)
-    DFS(node.children[0], callback, visited)
-  } else {
-    let index = 0
-    let current = node.children[index]
-    while (visited.includes(current)) {
-      ++index
-      current = node.children[index]
-      if (index === node.children.length) {
-        break
-      }
-    }
-    DFS(current, callback, visited)
   }
 }
+
+export const BFSCallback = <T extends Node>(
+  node: T,
+  callback: (currentNode: T) => void
+) => {}

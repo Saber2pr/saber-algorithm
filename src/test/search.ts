@@ -1,4 +1,4 @@
-import { deepSearch, BFS, DFS } from '../core/search'
+import { deepSearch, DFSCallback, DFSResult, DFSQuick } from '../core/search'
 
 export function test_search_ts() {
   const json = [
@@ -84,5 +84,5 @@ export function test_search_ts() {
   }
 
   // BFS(root, n => console.log(n.value))
-  DFS(root, n => console.log(n.value))
+  DFSQuick(root, n => console.log(n.value))
 }
