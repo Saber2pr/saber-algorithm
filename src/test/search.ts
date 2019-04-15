@@ -1,4 +1,11 @@
-import { deepSearch, DFSCallback, DFSResult, DFSQuick } from '../core/search'
+import {
+  deepSearch,
+  DFSRecursionCallback,
+  DFSRecursionResult,
+  DFSIterationCallback,
+  BFSIterationCallback,
+  BFSIterationMapCallback
+} from '../core/search'
 
 export function test_search_ts() {
   const json = [
@@ -75,6 +82,9 @@ export function test_search_ts() {
             children: [
               {
                 value: 7
+              },
+              {
+                value: 8
               }
             ]
           }
@@ -84,5 +94,8 @@ export function test_search_ts() {
   }
 
   // BFS(root, n => console.log(n.value))
-  DFSQuick(root, n => console.log(n.value))
+  console.log('dfs')
+  DFSIterationCallback(root, n => console.log(n.value))
+  console.log('bfs')
+  BFSIterationMapCallback(root, n => console.log(n.value))
 }
