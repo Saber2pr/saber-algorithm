@@ -15,3 +15,38 @@ export const deepSearch = (
         : callback(obj[key])
     )
   )
+
+export interface Node {
+  children?: this[]
+}
+
+export const BFS = <T extends Node>(
+  node: T,
+  callback: (currentNode: T) => void
+) => {
+  callback(node)
+  node.children && node.children.forEach(n => BFS(n, callback))
+}
+
+export const DFS = <T extends Node>(
+  node: T,
+  callback: (currentNode: T) => void,
+  visited: T[] = []
+) => {
+  if (!visited.includes(node)) {
+    callback(node)
+    visited.push(node)
+    DFS(node.children[0], callback, visited)
+  } else {
+    let index = 0
+    let current = node.children[index]
+    while (visited.includes(current)) {
+      ++index
+      current = node.children[index]
+      if (index === node.children.length) {
+        break
+      }
+    }
+    DFS(current, callback, visited)
+  }
+}
