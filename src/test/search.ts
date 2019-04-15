@@ -1,4 +1,4 @@
-import { deepSearch } from '../core/search'
+import { deepSearch, BFS, DFS } from '../core/search'
 
 export function test_search_ts() {
   const json = [
@@ -46,5 +46,43 @@ export function test_search_ts() {
       ]
     }
   ]
-  deepSearch(json, value => console.log(value))
+  // deepSearch(json, value => console.log(value))
+
+  interface Test {
+    value: number
+    children?: Test[]
+  }
+
+  const root: Test = {
+    value: 1,
+    children: [
+      {
+        value: 2,
+        children: [
+          {
+            value: 3
+          }
+        ]
+      },
+      {
+        value: 4
+      },
+      {
+        value: 5,
+        children: [
+          {
+            value: 6,
+            children: [
+              {
+                value: 7
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+
+  // BFS(root, n => console.log(n.value))
+  DFS(root, n => console.log(n.value))
 }
